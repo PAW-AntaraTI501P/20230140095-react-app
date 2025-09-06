@@ -5,9 +5,15 @@ import DataTable from "react-data-table-component";
 import TodoForm from "../../components/TodoForm.js";
 import EditTodoModal from "../../components/EditTodoModal.js";
 import SearchInput from "../../components/SearchInput.js"; // Pastikan ini diimpor
+import axios from 'axios';
+
 
 const TodoPage = () => {
   // State dari semua fitur digabungkan
+  const token = localStorage.getItem('token');
+  const headers = {
+      'Authorization': `Bearer ${token}`
+    };
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

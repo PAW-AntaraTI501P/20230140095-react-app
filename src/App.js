@@ -4,14 +4,22 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import TodoPage from "./pages/Todo/TodoPage";
+import LoginPage from "./pages/Login/LoginPage"; // <-- Impor halaman login
+import RegisterPage from "./pages/Login/RegisterPage"; // <-- Impor halaman register
+import ProtectedRoute from './components/ProtectedRoute';
 import "./App.css";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/todos" element={<TodoPage />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/todos" element={<TodoPage />} />
+        </Route>
       </Routes>
     </Router>
   );
